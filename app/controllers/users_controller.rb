@@ -7,10 +7,11 @@ class UsersController < ApplicationController
   def index
     @friends = current_user.facebook_details.get_connections("me", "friends")
     @data = @friends.map do |item|
+
       desc = Description.where(described_user_id: item["id"]).map(&:content)
       current_user.facebook_details.get_object(item["id"]).merge({image: current_user.facebook_details.get_picture(item["id"])}).merge({
         descriptions: desc,
-        description: Description.where(described_by_user_id: current_user.uid, described_user_id: item["id"]).first.content
+        description:  (c = Description.where(described_by_user_id: current_user.uid, described_user_id: item["id"])).empty? ?  "He knows nothing!" : c.first.content
       })
     end
 
@@ -71,12 +72,18 @@ class UsersController < ApplicationController
     p "describing.."
     p params
 
-    @description = Description.new({
-      described_user_id: params["fb_id"],
-      described_by_user_id: current_user.facebook_details.get_object("me")["id"],
-      content: params["description"]
-    })
-    @description.save!
+    if Description.where("described_user_id = ? AND described_by_user_id = ?", params["fb_id"], current_user.facebook_details.get_object("me")["id"]).present?
+      @description = Description.where("described_user_id = ? AND described_by_user_id = ?", params["fb_id"], current_user.facebook_details.get_object("me")["id"]).first
+      @description.update_attribute(:content, params["description"])
+    else
+      @description = Description.new({
+        described_user_id: params["fb_id"],
+        described_by_user_id: current_user.facebook_details.get_object("me")["id"],
+        content: params["description"]
+      })
+      @description.save!
+    end
+
 
     render :nothing => true
   end

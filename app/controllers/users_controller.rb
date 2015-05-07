@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   def index
     @friends = current_user.facebook_details.get_connections("me", "friends")
     @data = @friends.map do |item|
-      current_user.facebook_details.get_object(item["id"]).merge({image: current_user.facebook_details.get_picture(item["id"])})
+      desc = Description.where(described_user_id: item["id"]).map(&:content)
+      current_user.facebook_details.get_object(item["id"]).merge({image: current_user.facebook_details.get_picture(item["id"])}).merge({
+        descriptions: desc,
+        description: Description.where(described_by_user_id: current_user.uid, described_user_id: item["id"]).first.content
+      })
     end
 
     respond_to do |format|

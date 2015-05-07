@@ -8,6 +8,7 @@ jQuery ->
         image: 'http://www.allmediany.com/bignails/1343917142_blank.jpg'
         fb_link: 'https://www.facebook.com/JonSnowWatcherOnTheWall'
         description: 'He knows Nothing!'
+        descriptions: []
       }
 
     render: ->
@@ -29,7 +30,7 @@ jQuery ->
           <div className='col-md-6 container'>
             <div className='row'>
                 <div className='col-md-12 '>
-                  < Component.Descriptions />
+                  < Component.Descriptions descriptions={this.props.descriptions}/>
                 </div>
             </div>
           </div>

@@ -38,6 +38,11 @@ end
 
 gem 'koala', "~> 2.0"
 
+gem 'react-rails', '~> 1.0'
+
+gem "slim-rails"
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

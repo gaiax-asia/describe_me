@@ -1,0 +1,36 @@
+h1
+  | Listing users
+
+table
+  thead
+    tr
+      th Fb
+      th First Name
+      th Middle Name
+      th Gender
+      th Link
+      th Username
+      th
+      th
+      th
+  tbody
+    - @users.each do |user|
+      tr
+        td #{user.fb_id}
+        td #{user.first_name}
+        td #{user.middle_name}
+        td #{user.last_name}
+        td #{user.gender}
+        td #{user.link}
+        td #{user.username}
+        td #{link_to 'Show', user}
+        td #{link_to 'Edit', edit_user_path(user)}
+        td #{link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }}
+
+br
+
+  = link_to 'New User', new_user_path
+
+hr
+
+div#catalog-example

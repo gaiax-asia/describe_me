@@ -67,19 +67,13 @@ class UsersController < ApplicationController
     p "describing.."
     p params
 
-    if !User.find_by_fb_id(params["fb_id"]).present?
-      @user = User.new({fb_id: params["fb_id"]})
-      @user.save!
-    else
-      @user = User.find_by_fb_id(params["fb_id"])
-    end
-
     @description = Description.new({
       described_user_id: params["fb_id"],
       described_by_user_id: current_user.facebook_details.get_object("me")["id"],
       content: params["description"]
     })
     @description.save!
+
     render :nothing => true
   end
 

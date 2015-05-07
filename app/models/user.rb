@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
-  has_many :descriptions, class_name: 'Description', foreign_key: 'described_user_id'
-  has_many :given_descriptions, class_name: 'Description', foreign_key: 'described_by_user_id'
+  def descriptions
+    Description.where("described_user_id = ?", self.fb_id)
+  end
 
+  def given_descriptions
+    Description.where("described_by_user_id = ?", self.fb_id)
+  end
 
   def facebook_details
     facebook = Koala::Facebook::API.new(self.oauth_token, '16f69b54145dcc55488d4a8963a0c030')

@@ -10,16 +10,14 @@ jQuery ->
       this.setState({ description: $(e.currentTarget).val() })
 
     saveDescription: (e) ->
-      #$.ajax{
-      #  url: "/users/#{this.state.id}/describe"
-      #  type: 'POST'
-      #  success: (a,b,c) ->
-      #    console.log "success"
-      #  error: (a,b,c) ->
-      #    console.log "error"
-      #
-      #}
-      description = this.state.description
+      $.ajax
+        url: "/users/#{this.state.id}/describe"
+        type: 'POST'
+        data: {description: this.state.description}
+        success: (a,b,c) ->
+          console.log "success"
+        error: (a,b,c) ->
+          console.log "error"
 
     render: ->
       return `<div className='container'>

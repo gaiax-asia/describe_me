@@ -36,7 +36,7 @@ jQuery ->
         </div>
         <div className='row'>
           <div className='col-sm-12'>
-            < Component.DescriptionInput description={this.props.description}/>
+            < Component.DescriptionInput description={this.props.description} id={this.props.id}/>
           </div>
         </div>
       </div>`

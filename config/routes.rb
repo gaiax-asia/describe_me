@@ -4,6 +4,10 @@ DescribeMe::Application.routes.draw do
     collection do
       get :sign_in
     end
+
+    member do
+      post :describe
+    end
   end
 
   root to: 'users#index', via: :get

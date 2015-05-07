@@ -8,7 +8,7 @@ jQuery ->
 
     renderUserCatalogs: ->
       this.state.users.map (user) ->
-        return `< Component.Catalog name={user.name} description={user.description} image={user.image} fb_link={user.link}/>`
+        return `< Component.Catalog name={user.name} description={user.description} image={user.image} fb_link={user.link} id={user.id}/>`
 
     render: ->
       return `<div>{this.renderUserCatalogs()}</div>`

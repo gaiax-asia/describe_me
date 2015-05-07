@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_current_user, except: :sign_in
 
   # GET /users
   # GET /users.json
@@ -87,5 +88,10 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:fb_id, :first_name, :middle_name, :last_name, :gender, :link, :username)
+    end
+
+
+    def check_current_user
+      redirect_to sign_in_users_path unless current_user
     end
 end

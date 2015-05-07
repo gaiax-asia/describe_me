@@ -51,6 +51,12 @@ class UsersController < ApplicationController
     end
   end
 
+  # PUT /users/:fb_id/describe
+  def describe
+    p "describing.."
+
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -64,7 +70,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by_fb_id(params[:fb_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,5 +1,5 @@
 DescribeMe::Application.routes.draw do
-  resources :users
+  resources :users, param: :fb_id
 
   root 'users#index'
 

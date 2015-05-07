@@ -23,8 +23,8 @@ table
         td #{user.gender}
         td #{user.link}
         td #{user.username}
-        td #{link_to 'Show', user}
-        td #{link_to 'Edit', edit_user_path(user)}
+        td #{link_to 'Show', user_path(user.fb_id)}
+        td #{link_to 'Edit', edit_user_path(user.fb_id)}
         td #{link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }}
 
 br

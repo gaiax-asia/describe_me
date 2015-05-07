@@ -27,7 +27,7 @@ jQuery ->
     url: '/users',
     data: {},
     success: (responseJSON,b,c) ->
-      React.render(`< Component.List users={responseJSON}/>`, $('#catalog-example').get(0))
+      window.a = React.render(`< Component.List users={responseJSON}/>`, $('#catalog-example').get(0))
   }
 
 

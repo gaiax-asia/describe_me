@@ -12,25 +12,26 @@ jQuery ->
 
     render: ->
       return `<div className='container'>
-        <div clasName='row'>
-          Catalog
-        </div>
         <div className='row'>
-          <div className='col-sm-6 container'>
+          <div className='col-md-6 container'>
               <div className='row'>
-                  <div className='col-sm-12 image'>
+                  <div className='col-md-12 image'>
                       < Component.Image image={this.props.image} />
                   </div>
               </div>
 
               <div className='row'>
-                  <div className='col-sm-12 details'>
+                  <div className='col-md-12 details'>
                       < Component.Details name={this.props.name} fb_link={this.props.fb_link} />
                   </div>
               </div>
           </div>
-          <div className='col-sm-6 container'>
-            < Component.Descriptions />
+          <div className='col-md-6 container'>
+            <div className='row'>
+                <div className='col-md-12 '>
+                  < Component.Descriptions />
+                </div>
+            </div>
           </div>
 
         </div>

@@ -4,7 +4,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @friends = current_user.facebook_details.get_connections("me", "invitable_friends")
+
+    respond_to do |format|
+      format.html {}
+      format.json {
+        render json: @friends.to_json
+      }
+    end
   end
 
   # GET /users/1
@@ -65,6 +72,10 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  def sign_in
+
   end
 
   private

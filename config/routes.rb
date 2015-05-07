@@ -1,7 +1,23 @@
 DescribeMe::Application.routes.draw do
-  resources :users, param: :fb_id
+  # get 'users/sign_in', to: 'users#sign_in'
+  resources :users, param: :fb_id do
+    collection do
+      get :sign_in
+    end
+  end
 
-  root 'users#index'
+  root to: 'users#index', via: :get
+
+
+#
+#   get 'auth/facebook', as: "auth_provider"
+#   get 'auth/facebook/callback', to: 'users#login'
+  # get 'sessions/create'
+
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

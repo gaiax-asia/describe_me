@@ -1,4 +1,6 @@
 DescribeMe::Application.configure do
+  ENV['app_id'] = '1431234610515209'
+  ENV['secret'] = '16f69b54145dcc55488d4a8963a0c030'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

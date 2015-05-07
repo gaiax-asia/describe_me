@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 20150507025311) do
     t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_url"
     t.string   "provider"
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.string   "image_url"
   end
 
 end

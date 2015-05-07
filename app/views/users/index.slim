@@ -1,18 +1,18 @@
 h1
   | Listing users
 
-table
-  thead
-    tr
-      th Image
-      th First Name
-  tbody
-    - @friends.each do |friend|
-      tr
-        td #{image_tag friend['picture']['data']['url'].to_s}
-        td #{friend['name']}
-
-
+/table
+/  thead
+/    tr
+/      th Image
+/      th First Name
+/  tbody
+/    - @friends.each do |friend|
+/      tr
+/        td #{image_tag friend['picture']['data']['url'].to_s}
+/        td #{friend['name']}
+/
+/
 hr
 
 div#catalog-example

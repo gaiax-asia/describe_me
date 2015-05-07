@@ -5,12 +5,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @friends = current_user.facebook_details.get_connections("me", "invitable_friends")
+    @friends = current_user.facebook_details.get_connections("me", "friends")
+    @data = @friends.map do |item|
+      current_user.facebook_details.get_object(item["id"]).merge({image: current_user.facebook_details.get_picture(item["id"])})
+    end
 
     respond_to do |format|
       format.html {}
       format.json {
-        render json: @friends.to_json
+        render json: @data.to_json, layout: false, status: 200
       }
     end
   end

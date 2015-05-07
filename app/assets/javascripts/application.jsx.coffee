@@ -22,4 +22,12 @@
 window.Component = {}
 
 jQuery ->
-  React.render(`< Component.Catalog />`, $('#catalog-example').get(0))
+  $.ajax {
+    dataType: "json",
+    url: '/users',
+    data: {},
+    success: (responseJSON,b,c) ->
+      React.render(`< Component.List users={responseJSON}/>`, $('#catalog-example').get(0))
+  }
+
+

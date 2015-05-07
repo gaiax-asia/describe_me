@@ -11,4 +11,4 @@ jQuery ->
         return `< Component.Catalog name={user.name} description={user.description} image={user.image} fb_link={user.link} id={user.id}/>`
 
     render: ->
-      return `<div>{this.renderUserCatalogs()}</div>`
+      return `<div className="container-fluid">{this.renderUserCatalogs()}</div>`
